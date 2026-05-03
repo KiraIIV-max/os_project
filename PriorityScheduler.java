@@ -1,13 +1,12 @@
 import java.util.*;
 
-public class SJFScheduler {
+public class PriorityScheduler {
 
     public static List<Integer> schedule(List<Process> processes) {
 
         for (Process p : processes) {
-            p.remainingTime = p.burstTime;
             p.started = false;
-            p.firstRunTime = -1;
+            p.remainingTime = p.burstTime;
             p.completionTime = 0;
             p.turnaroundTime = 0;
             p.waitingTime = 0;
@@ -22,35 +21,37 @@ public class SJFScheduler {
 
         while (completed < n) {
 
-            Process shortest = null;
+            Process highest = null;
 
             for (Process p : processes) {
                 if (p.arrivalTime <= currentTime && p.remainingTime > 0) {
 
-                    if (shortest == null || p.remainingTime < shortest.remainingTime ||
-                        (p.remainingTime == shortest.remainingTime && p.arrivalTime < shortest.arrivalTime)) {
-                        shortest = p;
+                    // Lower priority number = higher priority (Linux convention)
+                    if (highest == null
+                            || p.priority < highest.priority
+                            || (p.priority == highest.priority && p.arrivalTime < highest.arrivalTime)) {
+                        highest = p;
                     }
                 }
             }
 
-            if (shortest == null) {
+            if (highest == null) {
                 ganttLog.add(-1);
                 currentTime++;
                 continue;
             }
 
-            if (!shortest.started) {
-                shortest.started = true;
-                shortest.firstRunTime = currentTime;
+            if (!highest.started) {
+                highest.started = true;
+                highest.firstRunTime = currentTime;
             }
 
-            shortest.remainingTime--;
+            highest.remainingTime--;
 
-            ganttLog.add(shortest.pid);
+            ganttLog.add(highest.pid);
 
-            if (shortest.remainingTime == 0) {
-                shortest.completionTime = currentTime + 1;
+            if (highest.remainingTime == 0) {
+                highest.completionTime = currentTime + 1;
                 completed++;
             }
 
@@ -59,8 +60,8 @@ public class SJFScheduler {
 
         for (Process p : processes) {
             p.turnaroundTime = p.completionTime - p.arrivalTime;
-            p.waitingTime = p.turnaroundTime - p.burstTime;
-            p.responseTime = p.firstRunTime - p.arrivalTime;
+            p.waitingTime    = p.turnaroundTime - p.burstTime;
+            p.responseTime   = p.firstRunTime   - p.arrivalTime;
         }
 
         return ganttLog;
