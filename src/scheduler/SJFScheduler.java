@@ -1,17 +1,14 @@
+package src.scheduler;
 import java.util.*;
+
+import src.model.Process;
 
 public class SJFScheduler {
 
     public static List<Integer> schedule(List<Process> processes) {
 
-        for (Process p : processes) {
-            p.remainingTime = p.burstTime;
-            p.started = false;
-            p.firstRunTime = -1;
-            p.completionTime = 0;
-            p.turnaroundTime = 0;
-            p.waitingTime = 0;
-            p.responseTime = 0;
+        for(Process p : processes){
+            p.reset();
         }
 
         List<Integer> ganttLog = new ArrayList<>();
