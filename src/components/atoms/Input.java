@@ -10,7 +10,7 @@ public class Input {
     private static final String TEXT_MUTED = "#9CA3AF";
     private static final String BORDER = "#D1D5DB";
     private static final String BORDER_FOCUS = "#5B7FDB";
-    private static final String SURFACE = "#FFFFFF";
+    private static final String SURFACE = "#FAFBFD";
     private static final String FONT_FAMILY = "Geist";
 
     private TextField field;

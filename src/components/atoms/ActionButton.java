@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 public class ActionButton {
     private static final String ACCENT = "#5B7FDB";
     private static final String SOFT_BLUE = "#EEF3FF";
-    private static final String WHITE = "#FFFFFF";
+    private static final String WHITE = "#FAFBFD";
     private static final String ERROR = "#D93737";
     private static final String SOFT_RED = "#FDF2F2";
     private static final String FONT_FAMILY = "Geist";

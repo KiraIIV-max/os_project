@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import src.model.Process;
 
 public class Table {
-    private static final String SURFACE = "#FFFFFF";
+    private static final String SURFACE = "#FAFBFD";
     private static final String HEADER = "#F2F3F5";
     private static final String BORDER = "#D1D5DB";
     private static final String TEXT_PRIMARY = "#20242B";

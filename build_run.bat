@@ -1,6 +1,6 @@
 @echo off
 REM ============================================================
-REM compile.bat — Compiles all Java source files
+REM build_run.bat — Compiles all Java files and runs the app
 REM Uses the JavaFX SDK downloaded by setup.bat
 REM ============================================================
 
@@ -22,18 +22,12 @@ mkdir out
 echo.
 echo  Compiling...
 
-javac --module-path "%JAVAFX_LIB%" --add-modules javafx.controls -d out ^
-    src\model\Process.java ^
-    src\scheduler\BaseScheduler.java ^
-    src\scheduler\SJFScheduler.java ^
-    src\scheduler\PriorityScheduler.java ^
-    src\ui\UITheme.java ^
-    src\ui\GanttChart.java ^
-    src\ui\App.java ^
-    src\views\InputScene.java ^
-    src\utils\Validator.java
+dir /s /B src\*.java > sources.txt
+javac --module-path "%JAVAFX_LIB%" --add-modules javafx.controls -d out @sources.txt
+set BUILD_STATUS=%ERRORLEVEL%
+del sources.txt
 
-if %ERRORLEVEL% NEQ 0 (
+if %BUILD_STATUS% NEQ 0 (
     echo.
     echo  Compilation failed! Check the errors above.
     pause
@@ -41,5 +35,8 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo  Compiled successfully!
-echo  Now run: run.bat
 echo.
+echo  Starting JavaFX app...
+echo.
+
+java --module-path "%JAVAFX_LIB%" --add-modules javafx.controls -cp out src.ui.App

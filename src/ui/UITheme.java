@@ -40,11 +40,11 @@ public final class UITheme {
     public static final Color COLOR_ERROR = Color.web("#DC2626");
 
     // Gantt-specific (keep old names for GanttChart.java compatibility)
-    public static final Color COLOR_BACKGROUND = COLOR_BG;
+    public static final Color COLOR_BACKGROUND = Color.web("#FAFBFD");
     public static final Color COLOR_TEXT_LIGHT = COLOR_TEXT_SECONDARY;
     public static final Color COLOR_IDLE_FILL = Color.web("#E2E0DD");
     public static final Color COLOR_IDLE_STROKE = Color.web("#B8B6B2");
-    public static final Color COLOR_EMPTY = COLOR_TEXT_SECONDARY;
+    public static final Color COLOR_EMPTY = Color.web("#FAFBFD");
 
     public static String css(Color color) {
         int r = (int) Math.round(color.getRed() * 255);
@@ -80,8 +80,8 @@ public final class UITheme {
     public static final int RADIUS_PILL = 999;
 
     // Gantt chart layout (unchanged)
-    public static final int UNIT_WIDTH = 40;
-    public static final int PADDING = 80;
+    public static final int UNIT_WIDTH = 32;
+    public static final int PADDING = 16;
     public static final int BAR_Y = 24;
     public static final int BAR_HEIGHT = 48;
     public static final int CANVAS_HEIGHT = 120;
