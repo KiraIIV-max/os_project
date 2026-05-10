@@ -13,8 +13,6 @@ public class Process {
     private boolean started;
     private int firstRunTime;
 
-    public Process() {}
-
     public Process(int pid, int arrivalTime, int burstTime, int priority) {
         this.pid = pid;
         this.arrivalTime = arrivalTime;
@@ -58,23 +56,4 @@ public class Process {
     public void setResponseTime(int responseTime) { this.responseTime = responseTime; }
     public void setStarted(boolean started) { this.started = started; }
     public void setFirstRunTime(int firstRunTime) { this.firstRunTime = firstRunTime; }
-
-    @Override
-    public String toString() {
-        return "Process{pid=" + pid + ", arrival=" + arrivalTime +
-               ", burst=" + burstTime + ", priority=" + priority + "}";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Process process = (Process) o;
-        return pid == process.pid;
-    }
-
-    @Override
-    public int hashCode() {
-        return Integer.hashCode(pid);
-    }
 }

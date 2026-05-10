@@ -39,4 +39,4 @@ echo.
 echo  Starting JavaFX app...
 echo.
 
-java --module-path "%JAVAFX_LIB%" --add-modules javafx.controls -cp out src.ui.App
+java --module-path "%JAVAFX_LIB%" --add-modules javafx.controls --enable-native-access=javafx.graphics -cp out src.ui.App

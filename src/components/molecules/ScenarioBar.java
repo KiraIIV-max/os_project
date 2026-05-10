@@ -9,10 +9,6 @@ import src.components.atoms.PillButton;
 public class ScenarioBar {
     private final HBox node;
 
-    public ScenarioBar(Runnable onBasic, Runnable onConflict, Runnable onFairness) {
-        this(onBasic, onConflict, onFairness, null);
-    }
-
     public ScenarioBar(Runnable onBasic, Runnable onConflict, Runnable onFairness, Runnable onValidation) {
         Label title = new Label("Load a scenario");
         title.setStyle(

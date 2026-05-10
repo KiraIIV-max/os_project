@@ -83,12 +83,7 @@ public class InputScene {
 
         for (int[] data : processData) {
             processes.add(new Process(data[0], data[1], data[2], data[3]));
-            validator.isValidProcess(
-                String.valueOf(data[0]),
-                String.valueOf(data[1]),
-                String.valueOf(data[2]),
-                String.valueOf(data[3])
-            );
+            validator.registerPID(data[0]);
         }
 
         tablePanel.clearError();
@@ -103,21 +98,19 @@ public class InputScene {
     }
 
     private void handleAddProcess(String[] fields) {
-        String errorMessage = validator.getErrorMessage(fields[0], fields[1], fields[2], fields[3]);
+        String error = validator.getErrorMessage(fields[0], fields[1], fields[2], fields[3]);
         tablePanel.clearError();
 
-        if (errorMessage != null) {
-            tablePanel.showError(errorMessage);
+        if (error != null) {
+            tablePanel.showError(error);
             return;
         }
 
-        if (!validator.isValidProcess(fields[0], fields[1], fields[2], fields[3])) {
-            tablePanel.showError("Invalid process");
-            return;
-        }
+        int pid = Integer.parseInt(fields[0]);
+        validator.registerPID(pid);
 
         processes.add(new Process(
-            Integer.parseInt(fields[0]),
+            pid,
             Integer.parseInt(fields[1]),
             Integer.parseInt(fields[2]),
             Integer.parseInt(fields[3])
@@ -131,11 +124,10 @@ public class InputScene {
         validator.reset();
         tablePanel.clearError();
         
-        // Add 2 valid processes
         processes.add(new Process(1, 0, 5, 1));
-        validator.isValidProcess("1", "0", "5", "1");
+        validator.registerPID(1);
         processes.add(new Process(2, 1, 3, 2));
-        validator.isValidProcess("2", "1", "3", "2");
+        validator.registerPID(2);
         
         tablePanel.refresh();
         

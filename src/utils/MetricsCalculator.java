@@ -13,56 +13,38 @@ public class MetricsCalculator {
     }
 
     public static double avgWaitingTime(List<Process> processes) {
-        return processes.stream().mapToInt(Process::getWaitingTime).average().orElse(0);
+        int sum = 0;
+        for (Process p : processes) sum += p.getWaitingTime();
+        return processes.isEmpty() ? 0 : (double) sum / processes.size();
     }
 
     public static double avgTurnaroundTime(List<Process> processes) {
-        return processes.stream().mapToInt(Process::getTurnaroundTime).average().orElse(0);
+        int sum = 0;
+        for (Process p : processes) sum += p.getTurnaroundTime();
+        return processes.isEmpty() ? 0 : (double) sum / processes.size();
     }
 
     public static double avgResponseTime(List<Process> processes) {
-        return processes.stream().mapToInt(Process::getResponseTime).average().orElse(0);
+        int sum = 0;
+        for (Process p : processes) sum += p.getResponseTime();
+        return processes.isEmpty() ? 0 : (double) sum / processes.size();
     }
 
-    // Analysis methods
     public static int getMaxWaitingTime(List<Process> processes) {
-        return processes.stream().mapToInt(Process::getWaitingTime).max().orElse(0);
+        int max = 0;
+        for (Process p : processes) if (p.getWaitingTime() > max) max = p.getWaitingTime();
+        return max;
     }
 
     public static int getMinWaitingTime(List<Process> processes) {
-        return processes.stream().mapToInt(Process::getWaitingTime).min().orElse(0);
+        if (processes.isEmpty()) return 0;
+        int min = processes.get(0).getWaitingTime();
+        for (Process p : processes) if (p.getWaitingTime() < min) min = p.getWaitingTime();
+        return min;
     }
 
     public static boolean hasStarvation(List<Process> processes) {
         int maxWait = getMaxWaitingTime(processes);
-        return maxWait > 50; // More than 50ms considered starvation
-    }
-
-    public static String getWinner(double algo1Value, double algo2Value) {
-        if (algo1Value < algo2Value) return "SRTF";
-        if (algo2Value < algo1Value) return "Priority";
-        return "Tie";
-    }
-
-    public static String getAnalysisText(List<Process> srtfProcesses, List<Process> priorityProcesses) {
-        double srtfAvgWT = avgWaitingTime(srtfProcesses);
-        double prioAvgWT = avgWaitingTime(priorityProcesses);
-        double srtfAvgTAT = avgTurnaroundTime(srtfProcesses);
-        double prioAvgTAT = avgTurnaroundTime(priorityProcesses);
-        double srtfAvgRT = avgResponseTime(srtfProcesses);
-        double prioAvgRT = avgResponseTime(priorityProcesses);
-
-        StringBuilder analysis = new StringBuilder();
-        analysis.append("• Average Waiting Time: ");
-        analysis.append(srtfAvgWT <= prioAvgWT ? "SRTF is better" : "Priority is better").append("\n");
-        analysis.append("• Average Turnaround Time: ");
-        analysis.append(srtfAvgTAT <= prioAvgTAT ? "SRTF is better" : "Priority is better").append("\n");
-        analysis.append("• Average Response Time: ");
-        analysis.append(srtfAvgRT <= prioAvgRT ? "SRTF is better" : "Priority is better").append("\n");
-
-        if (hasStarvation(srtfProcesses)) analysis.append("• SRTF: Potential starvation risk detected\n");
-        if (hasStarvation(priorityProcesses)) analysis.append("• Priority: Potential starvation risk detected\n");
-
-        return analysis.toString();
+        return maxWait > 50;
     }
 }

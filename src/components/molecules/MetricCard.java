@@ -12,8 +12,9 @@ public class MetricCard {
     public static VBox create(String title,
                               String algo1Name, double algo1Value,
                               String algo2Name, double algo2Value) {
-        VBox col1 = column(algo1Name, algo1Value, algo1Value <= algo2Value);
-        VBox col2 = column(algo2Name, algo2Value, algo2Value < algo1Value);
+        boolean isTie = algo1Value == algo2Value;
+        VBox col1 = column(algo1Name, algo1Value, isTie ? "Tie" : (algo1Value < algo2Value ? "Winner" : null));
+        VBox col2 = column(algo2Name, algo2Value, isTie ? "Tie" : (algo2Value < algo1Value ? "Winner" : null));
 
         HBox columns = new HBox(24, col1, col2);
 
@@ -23,7 +24,7 @@ public class MetricCard {
         return card;
     }
 
-    private static VBox column(String name, double value, boolean isWinner) {
+    private static VBox column(String name, double value, String badge) {
         Label nameLabel = new Label(name);
         nameLabel.setStyle(
             "-fx-font-family: 'Geist';" +
@@ -40,7 +41,7 @@ public class MetricCard {
         );
 
         VBox col = new VBox(4, nameLabel, valueLabel);
-        if (isWinner) col.getChildren().add(Badge.create("Winner"));
+        if (badge != null) col.getChildren().add(Badge.create(badge));
         col.setMinWidth(100);
         return col;
     }

@@ -1,17 +1,15 @@
 package src.scheduler;
 
 import src.model.Process;
-
+import src.utils.MetricsCalculator;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class BaseScheduler {
-
     protected abstract Process selectNext(List<Process> processes, int currentTime);
 
     public List<Integer> schedule(List<Process> processes) {
-        Objects.requireNonNull(processes, "Process list cannot be null");
+        if (processes == null) throw new IllegalArgumentException("Process list cannot be null");
 
         for (Process p : processes) {
             p.reset();
@@ -50,11 +48,7 @@ public abstract class BaseScheduler {
             currentTime++;
         }
 
-        for (Process p : processes) {
-            p.setTurnaroundTime(p.getCompletionTime() - p.getArrivalTime());
-            p.setWaitingTime(p.getTurnaroundTime() - p.getBurstTime());
-            p.setResponseTime(p.getFirstRunTime() - p.getArrivalTime());
-        }
+        MetricsCalculator.computeMetrics(processes);
 
         return ganttLog;
     }

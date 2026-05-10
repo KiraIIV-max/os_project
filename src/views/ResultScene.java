@@ -73,14 +73,11 @@ public class ResultScene {
         srtfGantt.setAlignment(Pos.CENTER);
         priorityGantt.setAlignment(Pos.CENTER);
 
-        // Back button
         ActionButton backBtn = new ActionButton("←", "Back", ActionButton.Variant.OUTLINE, onBack);
 
-        // Comparison and Conclusion
         VBox comparison = ComparisonSummary.create(srtfProcesses, priorityProcesses);
         VBox conclusion = ConclusionPanel.create(srtfProcesses, priorityProcesses);
 
-        // Root layout
         VBox layout = new VBox(24,
             title, subtitle,
             metrics, breakdowns,

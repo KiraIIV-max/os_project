@@ -20,7 +20,6 @@ public class ConclusionPanel {
 
         StringBuilder conclusion = new StringBuilder();
 
-        // Overall winner
         int srtfWins = 0;
         if (srtfAvgWT <= prioAvgWT) srtfWins++;
         if (srtfAvgTAT <= prioAvgTAT) srtfWins++;
@@ -36,13 +35,11 @@ public class ConclusionPanel {
             conclusion.append("Both algorithms showed trade-offs in different metrics.\n\n");
         }
 
-        // Efficiency vs Urgency trade-off
         conclusion.append("EFFICIENCY vs URGENCY:\n");
         conclusion.append("• SRTF optimizes for efficiency (minimizes total waiting time)\n");
         conclusion.append("• Priority optimizes for urgency (serves important jobs first)\n");
         conclusion.append("• Choose SRTF for batch processing; Priority for real-time systems\n\n");
 
-        // Fairness assessment
         int srtfMaxWT = MetricsCalculator.getMaxWaitingTime(srtfProcesses);
         int prioMaxWT = MetricsCalculator.getMaxWaitingTime(priorityProcesses);
         conclusion.append("FAIRNESS ASSESSMENT:\n");
@@ -54,7 +51,6 @@ public class ConclusionPanel {
 
         conclusion.append("• Lower max wait time indicates better fairness\n\n");
 
-        // Starvation risk
         boolean srtfStarve = MetricsCalculator.hasStarvation(srtfProcesses);
         boolean prioStarve = MetricsCalculator.hasStarvation(priorityProcesses);
         conclusion.append("STARVATION RISK:\n");
@@ -81,7 +77,7 @@ public class ConclusionPanel {
         Label conclusionText = new Label(conclusion.toString());
         conclusionText.setWrapText(true);
         conclusionText.setStyle(
-            "-fx-font-family: 'Monospace';" +
+            "-fx-font-family: 'Geist';" +
             "-fx-font-size: 12px;" +
             "-fx-text-fill: #1E293B;" +
             "-fx-line-spacing: 2;"

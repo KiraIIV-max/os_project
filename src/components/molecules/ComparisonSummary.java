@@ -24,7 +24,6 @@ public class ComparisonSummary {
         VBox content = new VBox(12);
         content.setStyle("-fx-padding: 16px;");
 
-        // Analysis items
         addAnalysisItem(content, "Waiting Time Winner",
             srtfAvgWT <= prioAvgWT ? "SRTF (Shortest Jobs First)" : "Priority Scheduling",
             srtfAvgWT <= prioAvgWT);
@@ -37,7 +36,6 @@ public class ComparisonSummary {
             srtfAvgRT <= prioAvgRT ? "SRTF (Shortest Jobs First)" : "Priority Scheduling",
             srtfAvgRT <= prioAvgRT);
 
-        // Starvation detection
         boolean srtfStarvation = MetricsCalculator.hasStarvation(srtfProcesses);
         boolean prioStarvation = MetricsCalculator.hasStarvation(priorityProcesses);
 
@@ -48,7 +46,6 @@ public class ComparisonSummary {
                 false);
         }
 
-        // Max waiting times
         int srtfMaxWT = MetricsCalculator.getMaxWaitingTime(srtfProcesses);
         int prioMaxWT = MetricsCalculator.getMaxWaitingTime(priorityProcesses);
         addAnalysisItem(content, "Fairness (Lower Max Wait)",
