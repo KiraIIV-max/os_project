@@ -37,14 +37,13 @@ public class ResultScene {
     }
 
     public ScrollPane render() {
-        // Header
+
         Label title = new Label("Simulation Results");
         title.setStyle("-fx-font-size: 28px; -fx-font-weight: 700; -fx-font-family: 'Geist'; -fx-text-fill: #1E293B;");
 
         Label subtitle = new Label("Comparing Shortest Remaining Time First (SRTF) vs Priority Scheduling.");
         subtitle.setStyle("-fx-font-size: 14px; -fx-font-family: 'Geist'; -fx-text-fill: #64748B;");
 
-        // Metric cards
         HBox metrics = new HBox(16,
             MetricCard.create("Avg. Waiting Time",
                 "SRTF", MetricsCalculator.avgWaitingTime(srtfProcesses),
@@ -57,13 +56,11 @@ public class ResultScene {
                 "Priority", MetricsCalculator.avgResponseTime(priorityProcesses))
         );
 
-        // Breakdown tables
         HBox breakdowns = new HBox(16,
             BreakdownTable.create("SRTF Breakdown", srtfProcesses),
             BreakdownTable.create("Priority Breakdown", priorityProcesses)
         );
 
-        // Gantt charts
         VBox srtfGantt = Card.create("SRTF Gantt Chart", "Time (ms)",
             GanttChart.createGanttCanvas(srtfGanttLog));
 

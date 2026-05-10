@@ -26,7 +26,7 @@ public class ActionButton {
 
         boolean isPrimary = variant == Variant.PRIMARY;
         boolean isDestructive = variant == Variant.DESTRUCTIVE;
-        
+
         String bg = isPrimary ? ACCENT :
                     isDestructive ? SOFT_RED : SOFT_BLUE;
         String fg = isPrimary ? WHITE :

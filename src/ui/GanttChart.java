@@ -16,9 +16,9 @@ public class GanttChart {
     private static final Font FONT_EMPTY   = Font.font(FONT_FAMILY, FontWeight.NORMAL, 12);
     private static final Font FONT_IDLE    = Font.font(FONT_FAMILY, FontWeight.NORMAL, 12);
     private static final Font FONT_PROCESS = Font.font(FONT_FAMILY, FontWeight.BOLD, 12);
-    private static final Font FONT_TIME    = Font.font(FONT_FAMILY, FontWeight.NORMAL, 12);
+    private static final Font FONT_TIME    = Font.font(FONT_FAMILY, FontWeight.NORMAL, 8);
 
-    private static final Color COLOR_BACKGROUND  = Color.web("#FAFBFD");
+    private static final Color COLOR_BACKGROUND   = Color.web("#FAFBFD");
     private static final Color COLOR_TEXT_PRIMARY = Color.web("#1E293B");
     private static final Color COLOR_TEXT_LIGHT   = Color.web("#64748B");
     private static final Color COLOR_IDLE_FILL    = Color.web("#E2E0DD");

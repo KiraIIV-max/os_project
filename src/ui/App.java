@@ -14,29 +14,17 @@ import src.scheduler.SJFScheduler;
 import src.scheduler.PriorityScheduler;
 
 public class App extends Application {
+
+    private Stage stage;
+    private InputScene inputScene;
+
     @Override
     public void start(Stage stage) {
-        InputScene[] inputSceneHolder = new InputScene[1];
-        inputSceneHolder[0] = new InputScene(processes -> {
-            ArrayList<Process> srtfList = deepCopy(processes);
-            ArrayList<Process> priorityList = deepCopy(processes);
+        this.stage = stage;
 
-            List<Integer> srtfGantt = new SJFScheduler().schedule(srtfList);
-            List<Integer> priorityGantt = new PriorityScheduler().schedule(priorityList);
+        inputScene = new InputScene(processes -> this.runSimulation(processes));
 
-            ResultScene resultScene = new ResultScene(
-                srtfList, srtfGantt,
-                priorityList, priorityGantt,
-                () -> {
-                    stage.setTitle("SRTF vs Priority Simulator");
-                    stage.getScene().setRoot(inputSceneHolder[0].render());
-                }
-            );
-            stage.setTitle("SRTF vs Priority - Results");
-            stage.getScene().setRoot(resultScene.render());
-        });
-
-        Scene scene = new Scene(inputSceneHolder[0].render(), 1000, 700);
+        Scene scene = new Scene(inputScene.render(), 1000, 700);
         stage.setTitle("SRTF vs Priority Simulator");
         stage.setMinHeight(700);
         stage.setResizable(false);
@@ -44,15 +32,42 @@ public class App extends Application {
         stage.show();
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    private void runSimulation(ArrayList<Process> processes) {
+        ArrayList<Process> srtfList     = deepCopy(processes);
+        ArrayList<Process> priorityList = deepCopy(processes);
+
+        List<Integer> srtfGantt     = new SJFScheduler().schedule(srtfList);
+        List<Integer> priorityGantt = new PriorityScheduler().schedule(priorityList);
+
+        ResultScene resultScene = new ResultScene(
+            srtfList, srtfGantt,
+            priorityList, priorityGantt,
+            this::goBackToInput
+        );
+
+        stage.setTitle("SRTF vs Priority || Results");
+        stage.getScene().setRoot(resultScene.render());
+    }
+
+    private void goBackToInput() {
+        stage.setTitle("SRTF vs Priority Simulator");
+        stage.getScene().setRoot(inputScene.render());
+    }
+
     private ArrayList<Process> deepCopy(ArrayList<Process> original) {
         ArrayList<Process> copy = new ArrayList<>();
         for (Process p : original) {
-            copy.add(new Process(p.getPid(), p.getArrivalTime(), p.getBurstTime(), p.getPriority()));
+            copy.add(new Process(
+                p.getPid(),
+                p.getArrivalTime(),
+                p.getBurstTime(),
+                p.getPriority()
+            ));
         }
         return copy;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

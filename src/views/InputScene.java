@@ -32,7 +32,7 @@ public class InputScene {
         form = new ProcessForm(this::handleAddProcess);
 
         ScenarioBar scenarios = new ScenarioBar(
-            () -> loadScenario(new int[][]{ {1, 0, 5, 2}, {2, 1, 3, 1}, {3, 2, 8, 3}, {4, 3, 4, 2} }),
+            () -> loadScenario(new int[][]{ {1, 0, 8, 1}, {2, 1, 4, 1}, {3, 2, 9, 2}, {4, 3, 5, 2} }),
             () -> loadScenario(new int[][]{ {1, 0, 10, 3}, {2, 0, 3, 1}, {3, 1, 6, 2}, {4, 2, 2, 5} }),
             () -> loadScenario(new int[][]{ {1, 0, 3, 1}, {2, 0, 7, 2}, {3, 0, 2, 3}, {4, 0, 15, 5} }),
             () -> showValidationDemo()
@@ -123,15 +123,14 @@ public class InputScene {
         processes.clear();
         validator.reset();
         tablePanel.clearError();
-        
+
         processes.add(new Process(1, 0, 5, 1));
         validator.registerPID(1);
         processes.add(new Process(2, 1, 3, 2));
         validator.registerPID(2);
-        
+
         tablePanel.refresh();
-        
-        // Show validation error message
+
         tablePanel.showError("Validation Demo: Try adding invalid data. Examples:\n" +
             "• Duplicate PID (e.g., '1') → Error\n" +
             "• Negative arrival (e.g., '-1') → Error\n" +

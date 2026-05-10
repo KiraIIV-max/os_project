@@ -22,7 +22,7 @@ public class ScenarioBar {
             new PillButton("Burst/Priority Conflict", onConflict).getNode(),
             new PillButton("Fairness/Starvation", onFairness).getNode()
         );
-        
+
         if (onValidation != null) {
             buttons.getChildren().add(new PillButton("Validation Demo", onValidation).getNode());
         }
