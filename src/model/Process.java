@@ -1,15 +1,17 @@
+package src.model;
+
 public class Process {
-    public int pid;
-    public int arrivalTime;
-    public int burstTime;
-    public int priority;
-    public int remainingTime;
-    public int completionTime;
-    public int waitingTime;
-    public int turnaroundTime;
-    public int responseTime;
-    public boolean started;
-    public int firstRunTime;
+    private int pid;
+    private int arrivalTime;
+    private int burstTime;
+    private int priority;
+    private int remainingTime;
+    private int completionTime;
+    private int waitingTime;
+    private int turnaroundTime;
+    private int responseTime;
+    private boolean started;
+    private int firstRunTime;
 
     public Process() {}
 
@@ -33,20 +35,46 @@ public class Process {
         this.responseTime = 0;
     }
 
-
-
     public int getPid() { return pid; }
     public int getArrivalTime() { return arrivalTime; }
     public int getBurstTime() { return burstTime; }
     public int getPriority() { return priority; }
+    public int getRemainingTime() { return remainingTime; }
     public int getCompletionTime() { return completionTime; }
     public int getWaitingTime() { return waitingTime; }
     public int getTurnaroundTime() { return turnaroundTime; }
     public int getResponseTime() { return responseTime; }
+    public boolean isStarted() { return started; }
+    public int getFirstRunTime() { return firstRunTime; }
 
+    public void setPid(int pid) { this.pid = pid; }
+    public void setArrivalTime(int arrivalTime) { this.arrivalTime = arrivalTime; }
+    public void setBurstTime(int burstTime) { this.burstTime = burstTime; }
+    public void setPriority(int priority) { this.priority = priority; }
+    public void setRemainingTime(int remainingTime) { this.remainingTime = remainingTime; }
+    public void setCompletionTime(int completionTime) { this.completionTime = completionTime; }
     public void setWaitingTime(int waitingTime) { this.waitingTime = waitingTime; }
     public void setTurnaroundTime(int turnaroundTime) { this.turnaroundTime = turnaroundTime; }
     public void setResponseTime(int responseTime) { this.responseTime = responseTime; }
+    public void setStarted(boolean started) { this.started = started; }
+    public void setFirstRunTime(int firstRunTime) { this.firstRunTime = firstRunTime; }
 
-    public void setPid(int pid) { this.pid = pid; }
+    @Override
+    public String toString() {
+        return "Process{pid=" + pid + ", arrival=" + arrivalTime +
+               ", burst=" + burstTime + ", priority=" + priority + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Process process = (Process) o;
+        return pid == process.pid;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(pid);
+    }
 }
