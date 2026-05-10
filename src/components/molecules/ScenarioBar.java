@@ -10,6 +10,10 @@ public class ScenarioBar {
     private final HBox node;
 
     public ScenarioBar(Runnable onBasic, Runnable onConflict, Runnable onFairness) {
+        this(onBasic, onConflict, onFairness, null);
+    }
+
+    public ScenarioBar(Runnable onBasic, Runnable onConflict, Runnable onFairness, Runnable onValidation) {
         Label title = new Label("Load a scenario");
         title.setStyle(
             "-fx-font-size: 16px;" +
@@ -17,13 +21,19 @@ public class ScenarioBar {
             "-fx-font-family: Geist;"
         );
 
-        node = new HBox(16,
-            title,
+        HBox buttons = new HBox(16,
             new PillButton("Basic Workload", onBasic).getNode(),
             new PillButton("Burst/Priority Conflict", onConflict).getNode(),
             new PillButton("Fairness/Starvation", onFairness).getNode()
         );
-        node.setPrefWidth(952);
+        
+        if (onValidation != null) {
+            buttons.getChildren().add(new PillButton("Validation Demo", onValidation).getNode());
+        }
+
+        node = new HBox(16, title);
+        node.getChildren().addAll(buttons.getChildren());
+        node.setPrefWidth(1000);
         node.setAlignment(Pos.CENTER_LEFT);
     }
 

@@ -14,6 +14,8 @@ import src.components.atoms.ActionButton;
 import src.components.atoms.Card;
 import src.components.molecules.MetricCard;
 import src.components.molecules.BreakdownTable;
+import src.components.molecules.ComparisonSummary;
+import src.components.molecules.ConclusionPanel;
 import src.ui.GanttChart;
 import src.utils.MetricsCalculator;
 
@@ -74,11 +76,17 @@ public class ResultScene {
         // Back button
         ActionButton backBtn = new ActionButton("←", "Back", ActionButton.Variant.OUTLINE, onBack);
 
+        // Comparison and Conclusion
+        VBox comparison = ComparisonSummary.create(srtfProcesses, priorityProcesses);
+        VBox conclusion = ConclusionPanel.create(srtfProcesses, priorityProcesses);
+
         // Root layout
         VBox layout = new VBox(24,
             title, subtitle,
             metrics, breakdowns,
             srtfGantt, priorityGantt,
+            comparison,
+            conclusion,
             backBtn.getNode()
         );
         layout.setPadding(new Insets(40, 24, 40, 24));

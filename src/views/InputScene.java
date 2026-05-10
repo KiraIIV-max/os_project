@@ -34,7 +34,8 @@ public class InputScene {
         ScenarioBar scenarios = new ScenarioBar(
             () -> loadScenario(new int[][]{ {1, 0, 5, 2}, {2, 1, 3, 1}, {3, 2, 8, 3}, {4, 3, 4, 2} }),
             () -> loadScenario(new int[][]{ {1, 0, 10, 3}, {2, 0, 3, 1}, {3, 1, 6, 2}, {4, 2, 2, 5} }),
-            () -> loadScenario(new int[][]{ {1, 0, 3, 1}, {2, 0, 7, 2}, {3, 0, 2, 3}, {4, 0, 15, 5} })
+            () -> loadScenario(new int[][]{ {1, 0, 3, 1}, {2, 0, 7, 2}, {3, 0, 2, 3}, {4, 0, 15, 5} }),
+            () -> showValidationDemo()
         );
 
         ActionButton clearButton = new ActionButton(
@@ -123,5 +124,26 @@ public class InputScene {
         ));
         tablePanel.refresh();
         form.clearFields();
+    }
+
+    private void showValidationDemo() {
+        processes.clear();
+        validator.reset();
+        tablePanel.clearError();
+        
+        // Add 2 valid processes
+        processes.add(new Process(1, 0, 5, 1));
+        validator.isValidProcess("1", "0", "5", "1");
+        processes.add(new Process(2, 1, 3, 2));
+        validator.isValidProcess("2", "1", "3", "2");
+        
+        tablePanel.refresh();
+        
+        // Show validation error message
+        tablePanel.showError("Validation Demo: Try adding invalid data. Examples:\n" +
+            "• Duplicate PID (e.g., '1') → Error\n" +
+            "• Negative arrival (e.g., '-1') → Error\n" +
+            "• Zero/negative burst (e.g., '0') → Error\n" +
+            "• Zero/negative priority (e.g., '0') → Error");
     }
 }
