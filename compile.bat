@@ -15,8 +15,9 @@ if not exist "%JAVAFX_LIB%" (
     exit /b 1
 )
 
-REM Create output directory
-if not exist out mkdir out
+REM Clean stale classes
+if exist out rmdir /s /q out
+mkdir out
 
 echo.
 echo  Compiling...
@@ -28,11 +29,9 @@ javac --module-path "%JAVAFX_LIB%" --add-modules javafx.controls -d out ^
     src\scheduler\PriorityScheduler.java ^
     src\ui\UITheme.java ^
     src\ui\GanttChart.java ^
-    src\utils\Validator.java ^
-    src\app\App.java ^
-    src\app\components\ButtonComponent.java ^
-    src\app\components\LabelComponent.java ^
-    src\app\views\MainView.java
+    src\ui\App.java ^
+    src\views\InputScene.java ^
+    src\utils\Validator.java
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
@@ -44,4 +43,3 @@ if %ERRORLEVEL% NEQ 0 (
 echo  Compiled successfully!
 echo  Now run: run.bat
 echo.
-pause

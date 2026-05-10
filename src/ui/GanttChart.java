@@ -12,9 +12,7 @@ import java.util.List;
 public class GanttChart {
 
     public static Canvas createGanttCanvas(List<Integer> ganttLog) {
-        if (ganttLog == null || ganttLog.isEmpty()) {
-            return createEmptyCanvas();
-        }
+        if (ganttLog == null || ganttLog.isEmpty()) return createEmptyCanvas();
 
         List<int[]> blocks = mergeBlocks(ganttLog);
 
