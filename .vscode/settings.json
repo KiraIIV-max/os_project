@@ -1,0 +1,18 @@
+{
+    "java.project.sourcePaths": [
+        "os_project\\src\\model",
+        "os_project\\src\\scheduler",
+        "os_project\\src\\ui",
+        "os_project\\src\\utils"
+    ],
+    "java.project.referencedLibraries": [
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.base.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.controls.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.fxml.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.graphics.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.media.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.swing.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx.web.jar",
+        "c:\\Users\\mohan\\Downloads\\javafx-sdk-21.0.2\\lib\\javafx-swt.jar"
+    ]
+}
