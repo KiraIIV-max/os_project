@@ -20,7 +20,7 @@ public class Card {
             "-fx-border-width: 1px;"
         );
 
-        if (title != null) {
+        if(title != null) {
             Label titleLabel = new Label(title);
             titleLabel.setStyle(
                 "-fx-font-family: 'Geist';" +

@@ -10,11 +10,9 @@ import javafx.scene.layout.VBox;
 
 import src.model.Process;
 import src.utils.Validator;
-import src.components.atoms.ActionButton;
-import src.components.atoms.Divider;
-import src.components.molecules.ProcessForm;
-import src.components.molecules.ScenarioBar;
-import src.components.organisms.ProcessTablePanel;
+import src.components.atoms.*;
+import src.components.molecules.*;
+import src.components.organisms.*;
 
 public class InputScene {
     private ArrayList<Process> processes = new ArrayList<>();

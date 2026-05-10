@@ -10,12 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import src.model.Process;
-import src.components.atoms.ActionButton;
-import src.components.atoms.Card;
-import src.components.molecules.MetricCard;
-import src.components.molecules.BreakdownTable;
-import src.components.molecules.ComparisonSummary;
-import src.components.molecules.ConclusionPanel;
+import src.components.atoms.*;
+import src.components.molecules.*;
 import src.ui.GanttChart;
 import src.utils.MetricsCalculator;
 
@@ -37,12 +33,11 @@ public class ResultScene {
     }
 
     public ScrollPane render() {
-
         Label title = new Label("Simulation Results");
-        title.setStyle("-fx-font-size: 28px; -fx-font-weight: 700; -fx-font-family: 'Geist'; -fx-text-fill: #1E293B;");
+        title.setStyle("-fx-font-size: 24px; -fx-font-weight: 700; -fx-font-family: 'Geist'; -fx-text-fill: #1E293B;");
 
         Label subtitle = new Label("Comparing Shortest Remaining Time First (SRTF) vs Priority Scheduling.");
-        subtitle.setStyle("-fx-font-size: 14px; -fx-font-family: 'Geist'; -fx-text-fill: #64748B;");
+        subtitle.setStyle("-fx-font-size: 16px; -fx-font-family: 'Geist'; -fx-text-fill: #64748B;");
 
         HBox metrics = new HBox(16,
             MetricCard.create("Avg. Waiting Time",

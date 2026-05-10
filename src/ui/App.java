@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import src.model.Process;
-import src.views.InputScene;
-import src.views.ResultScene;
-import src.scheduler.SJFScheduler;
-import src.scheduler.PriorityScheduler;
+import src.views.*;
+import src.scheduler.*;
 
 public class App extends Application {
 

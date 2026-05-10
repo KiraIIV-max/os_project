@@ -35,7 +35,7 @@ public class MetricCard {
         Label valueLabel = new Label(String.format("%.1f", value) + " ms");
         valueLabel.setStyle(
             "-fx-font-family: 'Geist';" +
-            "-fx-font-size: 22px;" +
+            "-fx-font-size: 24px;" +
             "-fx-font-weight: 700;" +
             "-fx-text-fill: #1E293B;"
         );

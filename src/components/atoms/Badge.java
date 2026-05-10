@@ -11,7 +11,7 @@ public class Badge {
             "-fx-background-color: #DCFCE7;" +
             "-fx-background-radius: 999px;" +
             "-fx-font-family: 'Geist';" +
-            "-fx-font-size: 11px;" +
+            "-fx-font-size: 12px;" +
             "-fx-font-weight: 600;" +
             "-fx-text-fill: #059669;"
         );
