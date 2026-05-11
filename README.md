@@ -184,7 +184,7 @@ This project is for educational purposes.
 
 ### Input Screen
 
-<img width="1252" height="912" alt="Input Screen" src="https://github.com/user-attachments/assets/289afe12-e6b8-4780-a0cf-dd5ef21f54a0" />
+<img width="1252" height="912" alt="image" src="https://github.com/user-attachments/assets/837357c0-f624-4d72-8e17-501ae4db4181" />
 
 ### Results Screen - Metrics & Analysis
 
